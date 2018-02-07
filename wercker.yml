@@ -82,20 +82,20 @@ deploy-app-to-oce:
         echo "Print traffic routing rules, if any, with istioctl"
         istioctl get routerule
 
-    - script:
-      name: Add traffic route rule with istioctl
-      code: |
-        echo "Add traffic route rule with istioctl"
-        istioctl create -f route-rules.yaml
-        echo "Check if the rule has been set correctly"
-        istioctl get routerule route-rules -o yaml
+    # - script:
+    #   name: Add traffic route rule with istioctl
+    #   code: |
+    #     echo "Add traffic route rule with istioctl"
+    #     istioctl create -f route-rules.yaml
+    #     echo "Check if the rule has been set correctly"
+    #     istioctl get routerule route-rules -o yaml
 # Deploy the app with istio side car injection (manual)
-    # - kubectl:
-    #     name: create deplyoment
-    #     server: $KUBERNETES_MASTER
-    #     token: $KUBERNETES_TOKEN
-    #     insecure-skip-tls-verify: true
-    #     command: apply -f <(istioctl kube-inject -f kubernetes-deployment.yml)
+    - kubectl:
+        name: create deplyoment
+        server: $KUBERNETES_MASTER
+        token: $KUBERNETES_TOKEN
+        insecure-skip-tls-verify: true
+        command: apply -f <(istioctl kube-inject -f kubernetes-deployment.yml)
 
 # This step prints the traffic routing rules, if any
 
