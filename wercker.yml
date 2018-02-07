@@ -86,11 +86,11 @@ deploy-app-to-oce:
     #     command: apply -f <(istioctl kube-inject -f kubernetes-deployment.yml)
 
 # This step prints the traffic routing rules, if any
-    - script:
-      name: Print traffic routing rules, if any, with istioctl
-      code: |
-        echo "Print traffic routing rules, if any, with istioctl"
-        istioctl get routerule
+      - script:
+        name: Print traffic routing rules, if any, with istioctl
+        code: |
+          echo "Print traffic routing rules, if any, with istioctl"
+          istioctl get routerule
 #
 # Use the following steps to add, replace or delete the canary deploy rule to route traffic to v1/v2
 #
